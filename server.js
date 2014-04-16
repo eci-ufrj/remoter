@@ -2,7 +2,7 @@ var http = require('http'),
     fs = require('fs');
 
 
-fs.readFile('./templates/video/index.html', function (err, html) {
+fs.readFile('./server/templates/video/index.html', function (err, html) {
     if (err) {
         throw err; 
     }       
