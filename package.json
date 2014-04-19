@@ -26,5 +26,9 @@
   "devDependencies": {
     "express": "^4.0.0",
     "socket.io": "^0.9.16"
+  },
+  "dependencies": {
+    "express": "^4.0.0",
+    "socket.io": "^0.9.16"
   }
 }
