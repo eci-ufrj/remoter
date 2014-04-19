@@ -1,3 +1,4 @@
+//Entry point for Remoter service
 var express = require('express');
 var app = express()
   , http = require('http')
