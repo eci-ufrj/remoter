@@ -11,6 +11,8 @@ var app_socket;
 app.get('/control/:control', function (req, res) {
   if (app_socket!==undefined){
     app_socket.emit("interaction",{type:req.params.control});
+    res.head(200);
+    res.end("ok");
   }
 });
 
