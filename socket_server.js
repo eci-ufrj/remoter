@@ -5,7 +5,7 @@ var app = express()
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
 
-server.listen(8000);
+server.listen(process.env.PORT || 5000);
 var app_socket;
 //waits for remote controler (a.k.a. mobile app) for interactions
 app.get('/control/:control', function (req, res) {
