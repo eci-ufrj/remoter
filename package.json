@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/ECI-UFRJ/remoter/issues"
   },
-  "homepage": "https://github.com/ECI-UFRJ/remoter"
+  "homepage": "https://github.com/ECI-UFRJ/remoter",
+  "devDependencies": {
+    "express": "^4.0.0",
+    "socket.io": "^0.9.16"
+  }
 }

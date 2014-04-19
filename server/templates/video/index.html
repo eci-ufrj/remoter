@@ -1,6 +1,41 @@
 <html>
+	
 	<body>
-			<video src="http://www.w3schools.com/html/movie.mp4" autoplay></video>
+			<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+			<script type="text/javascript">
+
+				var socket = io.connect('http://localhost:8000');
+  				socket.on('interaction', function (data) {
+				    //console.log(data);
+				    //socket.emit('my other event', { my: 'data' });
+				    if (data.type ==="stop_video"){
+				    	document.getElementById("video-urso").pause();
+					}
+ 				});
+
+				function changeVideo() {
+					var urso = document.getElementById('video-urso');
+					var juh = document.getElementById('video-juh');
+
+					if (urso.style.display==="none"){
+						juh.style.display="none";
+						juh.pause();
+						urso.display="block";
+						urso.play();
+					}else if (juh.style.display==="none") {
+						urso.style.display="none";
+						urso.pause();
+						urso.autoplay = false;
+						juh.display='';
+						juh.play();
+					}
+				}
+			</script>
+			<video src="http://www.w3schools.com/html/movie.mp4" id="video-urso" autoplay></video>
+			<video src="http://vimeo.com/90616142/download?t=1397700925&v=240188612&s=d6b08f7c31e975a1103cda2d62f1c5b0" style="display:none" id="video-juh"></video>
+			<button  style="display:none"onclick="changeVideo()">Change Video</button>
+				
 	</body>
 </html> 
 
