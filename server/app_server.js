@@ -2,7 +2,7 @@
 var app = require('http').createServer(handler),
     fs = require('fs'),io = require('socket.io').listen(app);
 
-var port = 5000;
+var port = 8000;
 app.listen(port);
 
 
