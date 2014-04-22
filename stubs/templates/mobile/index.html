@@ -1,20 +1,16 @@
 <html>
 	
 	<body>
-			<script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
+			<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
 			<script type="text/javascript">
-				console.log("oi");
-				// var URL = "localhost:5000/control/stop_video"
-				var URL = "remoter.herokuapp.com/control/stop_video"	
+				
+				var URL = "localhost:5000/mobile"
+				// var URL = "remoter.herokuapp.com/control/stop_video"	
 				URL = "http://"+ URL;
-
+				var socket = io.connect(URL);
 
 				function stop_video() {
-					$.ajax({
-						url:URL,
-						type:"GET"
-
-					});
+					socket.emit("interaction","stop_video");
 				}
 
 			</script>
