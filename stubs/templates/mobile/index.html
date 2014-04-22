@@ -1,0 +1,24 @@
+<html>
+	
+	<body>
+			<script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
+			<script type="text/javascript">
+				console.log("oi");
+				// var URL = "localhost:5000/control/stop_video"
+				var URL = "remoter.herokuapp.com/control/stop_video"	
+				URL = "http://"+ URL;
+
+
+				function stop_video() {
+					$.ajax({
+						url:URL,
+						type:"GET"
+
+					});
+				}
+
+			</script>
+			<button onclick="stop_video()">STOP VIDEO</button>
+	</body>
+</html> 
+

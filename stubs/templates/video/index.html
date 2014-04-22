@@ -1,0 +1,23 @@
+<html>
+	
+	<body>
+			
+		<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
+			<script type="text/javascript">
+
+				var socket = io.connect('http://remoter.herokuapp.com:80');
+  				socket.on('interaction', function (data) {
+				    if (data.type ==="stop_video"){
+				    	document.getElementById("video-urso").pause();
+					}
+ 				});
+			</script>
+			
+			<video src="http://www.w3schools.com/html/movie.mp4" id="video-urso" autoplay></video>
+			
+			<video src="http://vimeo.com/90616142/download?t=1397700925&v=240188612&s=d6b08f7c31e975a1103cda2d62f1c5b0" style="display:none" id="video-juh"></video>
+			
+				
+	</body>
+</html> 
+
