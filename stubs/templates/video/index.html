@@ -4,10 +4,12 @@
 			
 		<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
 			<script type="text/javascript">
-
-				var socket = io.connect('http://remoter.herokuapp.com:80');
+				var URL = "localhost:5000/app"
+				// var URL = 'http://remoter.herokuapp.com:80'	
+				URL = "http://"+ URL;
+				var socket = io.connect(URL);
   				socket.on('interaction', function (data) {
-				    if (data.type ==="stop_video"){
+				    if (data ==="stop_video"){
 				    	document.getElementById("video-urso").pause();
 					}
  				});

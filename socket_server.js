@@ -6,17 +6,36 @@ var app = express()
   , io = require('socket.io').listen(server);
 
 server.listen(process.env.PORT || 5000);
-var app_socket;
+
+var clients = {mobile:[]}
+
 //waits for remote controler (a.k.a. mobile app) for interactions
+//controller 'get' fallback
 app.get('/control/:control', function (req, res) {
-  if (app_socket!==undefined){
-    app_socket.emit("interaction",{type:req.params.control});
+  if (clients.app!==undefined){
+    clients.app.emit("interaction",{type:req.params.control});
     res.status(200).send("ok");
   }
 });
 
 //listen for webapp connection
-io.sockets.on('connection', function (socket) {
+io.of("/app").on('connection', function (socket) {
   console.log("App connection!!");
-  app_socket = socket;
+  clients["app"] = socket;
+
 });
+
+//listen for mobile app connection
+io.of("/mobile").on('connection', function (socket) {
+  
+  console.log("Mobile connection!!");
+  clients["mobile"].push(socket);
+  
+  socket.on("interaction",function(interaction) {
+  	if (clients.app !== undefined){
+  		clients.app.emit("interaction",interaction);
+  	}	
+  		
+  })
+});
+
