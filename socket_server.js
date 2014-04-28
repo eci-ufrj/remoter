@@ -10,9 +10,10 @@ server.listen(process.env.PORT || 5000);
 var clients = {mobile:[]}
 
 //waits for remote controler (a.k.a. mobile app) for interactions
+//controller 'get' fallback
 app.get('/control/:control', function (req, res) {
-  if (app_socket!==undefined){
-    app_socket.emit("interaction",{type:req.params.control});
+  if (clients.app!==undefined){
+    clients.app.emit("interaction",{type:req.params.control});
     res.status(200).send("ok");
   }
 });
