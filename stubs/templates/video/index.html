@@ -1,5 +1,20 @@
 <html>
-	
+	<head>
+		<script src="https://apis.google.com/js/client:plus.js"></script>
+		<script src="https://apis.google.com/js/plus.js?onload=OnLoadCallback">
+			window.___gcfg = {
+    			lang: 'pt-br',
+    			parsetags: 'onload'
+  			}
+		</script>
+		<script type="text/javascript">
+		  (function() {
+		    	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		    	po.src = 'https://apis.google.com/js/plusone.js?onload=OnLoadCallback';
+		    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  			})();
+		</script>
+	</head>
 	<body>
 			
 		<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
@@ -15,11 +30,20 @@
  				});
 			</script>
 			
-			<video src="http://www.w3schools.com/html/movie.mp4" id="video-urso" autoplay></video>
+			<video src="http://www.w3schools.com/html/movie.mp4" controls id="video-urso"></video>
 			
 			<video src="http://vimeo.com/90616142/download?t=1397700925&v=240188612&s=d6b08f7c31e975a1103cda2d62f1c5b0" style="display:none" id="video-juh"></video>
 			
-				
+			<span id="signinButton">
+			  <span
+			    class="g-signin"
+			    data-callback="signinCallback"
+			    data-clientid="CLIENT_ID"
+			    data-cookiepolicy="single_host_origin"
+			    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+			    data-scope="https://www.googleapis.com/auth/plus.login">
+			  </span>
+			</span>	
 	</body>
 </html> 
 

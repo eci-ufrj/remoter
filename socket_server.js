@@ -9,6 +9,10 @@ server.listen(process.env.PORT || 5000);
 
 var clients = {mobile:[]}
 
+
+app.use("/",express.static(__dirname+"/client/templates/"));
+app.use("/libs",express.static(__dirname+"/client/js/bower_components/"));
+
 //waits for remote controler (a.k.a. mobile app) for interactions
 //controller 'get' fallback
 app.get('/control/:control', function (req, res) {
