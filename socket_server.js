@@ -11,6 +11,8 @@ var clients = {mobile:[]}
 
 
 app.use("/",express.static(__dirname+"/client/templates/"));
+app.use("/css",express.static(__dirname+"/client/css/"));
+app.use("/js",express.static(__dirname+"/client/js/"));
 app.use("/libs",express.static(__dirname+"/client/js/bower_components/"));
 
 //waits for remote controler (a.k.a. mobile app) for interactions
