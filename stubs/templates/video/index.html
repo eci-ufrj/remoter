@@ -1,25 +1,55 @@
 <html>
-	
+	<head>
+		<title> Bear Life</title>
+	</head>
 	<body>
 			
 		<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
 			<script type="text/javascript">
-				var URL = "localhost:5000/app"
-				// var URL = 'http://remoter.herokuapp.com:80'	
-				URL = "http://"+ URL;
-				var socket = io.connect(URL);
-  				socket.on('interaction', function (data) {
-				    if (data ==="stop_video"){
-				    	document.getElementById("video-urso").pause();
-					}
- 				});
+				
+				function connect_socket (token) {
+					
+					var URL = "localhost:5000/app"
+					// var URL = 'http://remoter.herokuapp.com:80'	
+					URL = "http://"+ URL;
+					var socket = io.connect(URL);
+						socket.on('interaction', function (data) {
+					    if (data ==="stop_video"){
+					    	document.getElementById("video-urso").pause();
+						}
+						});
+				}
 			</script>
 			
-			<video src="http://www.w3schools.com/html/movie.mp4" id="video-urso" autoplay></video>
+			<video src="http://www.w3schools.com/html/movie.mp4" controls id="video-urso"></video>
 			
 			<video src="http://vimeo.com/90616142/download?t=1397700925&v=240188612&s=d6b08f7c31e975a1103cda2d62f1c5b0" style="display:none" id="video-juh"></video>
 			
+			<button onclick="remoterLogin()">Connect with Remoter</button>
+			<script type="text/javascript">
+				function remoterLogin () {
+					
+					window.open("http://localhost:5000/login", "", "width=400, height=300");
+					window.addEventListener("message",messageHandler);
+					
+				}
+
+				function messageHandler (event) {
+
+					if (event.origin === "http://localhost:5000")
+						console.log("remoter login");
+
+					// console.log(event.data);
+					connect_socket(event.data);
+					
+				}
+
 				
+				
+
+
+
+			</script>
 	</body>
 </html> 
 
