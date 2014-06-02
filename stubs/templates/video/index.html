@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
 			<script type="text/javascript">
 				
-				function connect_socket (token) {
+				function connect_socket (remoter_id) {
 					
 					var URL = "localhost:5000/app"
 					// var URL = 'http://remoter.herokuapp.com:80'	
@@ -28,19 +28,32 @@
 			<button onclick="remoterLogin()">Connect with Remoter</button>
 			<script type="text/javascript">
 				function remoterLogin () {
+					var remoter_id = localStorage.getItem("remoter_id");
+					if (remoter_id!=="undefined" && remoter_id!==undefined && remoter_id!==null){
+						connect_socket(remoter_id);
+					}else{
+						window.open("http://localhost:5000/login", "", "width=400, height=300");
+						window.addEventListener("message",messageHandler);	
+					}
 					
-					window.open("http://localhost:5000/login", "", "width=400, height=300");
-					window.addEventListener("message",messageHandler);
 					
 				}
 
 				function messageHandler (event) {
 
-					if (event.origin === "http://localhost:5000")
-						console.log("remoter login");
+					if (event.origin === "http://localhost:5000"){
+						console.log("remoter login: " + event.data.remoter_id);
+						var remoter_id = event.data.remoter_id;
+						var local_remoter_id = localStorage.getItem("remoter_id");
+						if (local_remoter_id==="undefined" || local_remoter_id===undefined || local_remoter_id===null){
+							localStorage.setItem("remoter_id",event.data.remoter_id);
+						}
+						connect_socket(event.data.remoter_id);
+					}
+						
 
 					// console.log(event.data);
-					connect_socket(event.data);
+					
 					
 				}
 
