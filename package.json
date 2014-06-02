@@ -27,7 +27,7 @@
     "express": "^4.0.0",
     "googleapis": "^0.7.0",
     "mongodb": "^1.4.5",
-    "socket.io": "^0.9.16"
+    "socket.io": "^0.9.17"
   },
   "dependencies": {
     "express": "^4.0.0",

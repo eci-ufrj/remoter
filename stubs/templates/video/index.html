@@ -14,8 +14,12 @@
 					URL = "http://"+ URL;
 					var socket = io.connect(URL);
 						socket.on('interaction', function (data) {
-					    if (data ==="stop_video"){
+						console.log("data: "+data);
+					    if (data ==="stop_button"){
+					    	console.log("stop video");
 					    	document.getElementById("video-urso").pause();
+						}else if (data === "play_button"){
+							document.getElementById("video-urso").play();
 						}
 						});
 				}
