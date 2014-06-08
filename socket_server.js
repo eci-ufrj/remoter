@@ -39,6 +39,20 @@ function find_user (user_id,callback) {
     });
 }
 
+
+function insert_user (user_id,callback) {
+  db.collection("users",{strict:true},function(err, collection) {
+    if (!err){
+      collection.insert({name:"mongo",google_id:user_id},{w:1},function(err,doc){
+        callback.call(err,doc);
+      });
+    }
+      });
+}
+
+
+
+
 var API_KEY = "AIzaSyAMxUzSAD5px7rO_-LBIKEbjVVDx3q6hEw";
 
 //Google
@@ -103,8 +117,16 @@ app.get("/auth/:token",function (req,res) {
               console.log("user id: " + result[0].google_id);
               res.send({user_id:result[0].google_id});
             }else{
-              console.log("little boy");
+              
             //TODO: create user
+            insert_user(info.user_id,function(err,doc){
+              if (err){
+                console.log(err);
+              }else if (doc){
+                console.log(doc.google_id);
+                res.send({user_id:doc[0].google_id});
+              }
+            });
               }
           }else{
             res.send({error:args});
