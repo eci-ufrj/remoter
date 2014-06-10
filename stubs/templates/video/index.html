@@ -3,14 +3,14 @@
 		<title> Bear Life</title>
 	</head>
 	<body>
-			
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
 			<script type="text/javascript">
-				
+
 				function connect_socket (remoter_id) {
-					
+
 					var URL = "localhost:5000/app"
-					// var URL = 'http://remoter.herokuapp.com:80'	
+					// var URL = 'http://remoter.herokuapp.com:80'
 					URL = "http://"+ URL;
 					var socket = io.connect(URL);
 						socket.on('interaction', function (data) {
@@ -24,12 +24,25 @@
 						});
 				}
 			</script>
-			
-			<video src="http://www.w3schools.com/html/movie.mp4" controls id="video-urso"></video>
-			
-			<video src="http://vimeo.com/90616142/download?t=1397700925&v=240188612&s=d6b08f7c31e975a1103cda2d62f1c5b0" style="display:none" id="video-juh"></video>
-			
-			<button onclick="remoterLogin()">Connect with Remoter</button>
+			<style>
+				#header{
+					text-align:center;
+				}
+				#login{
+					margin-left: 20px;
+				}
+			</style>
+			<div class="row">
+				<div class="col-md-3 col-md-offset-3" id="header"><h1>Remoter</h1></div>
+			</div>
+			<div class="row"><button class="btn btn-primary btn-sm" id="login" onclick="remoterLogin()">Connect with Remoter</button></div>
+			<div class="row">
+				<div class="col-md-3 col-md-offset-3">
+					<video src="http://www.w3schools.com/html/movie.mp4" width="400" height = "300" height controls id="video-urso"></video>
+					<video src="http://vimeo.com/90616142/download?t=1397700925&v=240188612&s=d6b08f7c31e975a1103cda2d62f1c5b0" style="display:none" id="video-juh"></video>
+				</div>
+			</div>
+
 			<script type="text/javascript">
 				function remoterLogin () {
 					var remoter_id = localStorage.getItem("remoter_id");
@@ -37,10 +50,10 @@
 						connect_socket(remoter_id);
 					}else{
 						window.open("http://localhost:5000/login", "", "width=400, height=300");
-						window.addEventListener("message",messageHandler);	
+						window.addEventListener("message",messageHandler);
 					}
-					
-					
+
+
 				}
 
 				function messageHandler (event) {
@@ -54,19 +67,18 @@
 						}
 						connect_socket(event.data.remoter_id);
 					}
-						
+
 
 					// console.log(event.data);
-					
-					
+
+
 				}
 
-				
-				
+
+
 
 
 
 			</script>
 	</body>
-</html> 
-
+</html>
