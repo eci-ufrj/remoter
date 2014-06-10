@@ -9,8 +9,8 @@
 				
 				function connect_socket (remoter_id) {
 					
-					var URL = "localhost:5000/app"
-					// var URL = 'http://remoter.herokuapp.com:80'	
+					// var URL = "localhost:5000/app"
+					var URL = 'http://remoter.herokuapp.com:80/app';	
 					URL = "http://"+ URL;
 					var socket = io.connect(URL);
 						socket.on('interaction', function (data) {
@@ -36,7 +36,9 @@
 					if (remoter_id!=="undefined" && remoter_id!==undefined && remoter_id!==null){
 						connect_socket(remoter_id);
 					}else{
-						window.open("http://localhost:5000/login", "", "width=400, height=300");
+						var URL = 'http://remoter.herokuapp.com:80/login';
+						// var URL = "http://localhost:5000/login"
+						window.open(URL, "", "width=400, height=300");
 						window.addEventListener("message",messageHandler);	
 					}
 					
@@ -44,8 +46,9 @@
 				}
 
 				function messageHandler (event) {
-
-					if (event.origin === "http://localhost:5000"){
+					var URL = 'http://remoter.herokuapp.com:80';
+					// var URL = "http://localhost:5000"
+					if (event.origin === URL){
 						console.log("remoter login: " + event.data.remoter_id);
 						var remoter_id = event.data.remoter_id;
 						var local_remoter_id = localStorage.getItem("remoter_id");
