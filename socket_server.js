@@ -5,8 +5,7 @@ var app = express()
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
 //Google 
-var googleapis = require('googleapis');
-var OAuth2Client = googleapis.OAuth2Client;
+
 var https = require('https');
 //Database
 var MongoClient = require('mongodb').MongoClient;
