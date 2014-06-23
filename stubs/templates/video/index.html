@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title> Bear Life</title>
+	</head>
+	<body>
+			
+		<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
+			<script type="text/javascript">
+				
+				function connect_socket (remoter_id) {
+					
+					var URL = "localhost:5000/app"
+					// var URL = 'http://remoter.herokuapp.com:80/app';	
+					URL = "http://"+ URL;
+					var socket = io.connect(URL);
+						socket.on('interaction', function (data) {
+						console.log("data: "+data);
+					    if (data ==="stop_button"){
+					    	console.log("stop video");
+					    	document.getElementById("video-urso").pause();
+						}else if (data === "play_button"){
+							document.getElementById("video-urso").play();
+						}
+						});
+				}
+			</script>
+			
+			<video src="http://www.w3schools.com/html/movie.mp4" controls id="video-urso"></video>
+			
+			<video src="http://vimeo.com/90616142/download?t=1397700925&v=240188612&s=d6b08f7c31e975a1103cda2d62f1c5b0" style="display:none" id="video-juh"></video>
+			
+			<button onclick="remoterLogin()">Connect with Remoter</button>
+			<script type="text/javascript">
+				function remoterLogin () {
+					var remoter_id = localStorage.getItem("remoter_id");
+					if (remoter_id!=="undefined" && remoter_id!==undefined && remoter_id!==null){
+						connect_socket(remoter_id);
+					}else{
+						// var URL = 'http://remoter.herokuapp.com:80/login';
+						var URL = "http://localhost:5000/login"
+						window.open(URL, "", "width=400, height=300");
+						window.addEventListener("message",messageHandler);	
+					}
+					
+					
+				}
+
+				function messageHandler (event) {
+					// var URL = 'http://remoter.herokuapp.com:80';
+					var URL = "http://localhost:5000"
+					if (event.origin === URL){
+						console.log("remoter login: " + event.data.remoter_id);
+						var remoter_id = event.data.remoter_id;
+						var local_remoter_id = localStorage.getItem("remoter_id");
+						if (local_remoter_id==="undefined" || local_remoter_id===undefined || local_remoter_id===null){
+							localStorage.setItem("remoter_id",event.data.remoter_id);
+						}
+						connect_socket(event.data.remoter_id);
+					}
+						
+
+					// console.log(event.data);
+					
+					
+				}
+
+				
+				
+
+
+
+			</script>
+	</body>
+</html> 
+

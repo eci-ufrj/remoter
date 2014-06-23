@@ -1,0 +1,38 @@
+{
+  "engines": {
+    "node": "0.10.x"
+  },
+  "name": "remoter",
+  "version": "0.0.1",
+  "description": "The Remoter",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ECI-UFRJ/remoter.git"
+  },
+  "keywords": [
+    "remoter"
+  ],
+  "author": "Yuri-Vasquez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ECI-UFRJ/remoter/issues"
+  },
+  "homepage": "https://github.com/ECI-UFRJ/remoter",
+  "devDependencies": {
+    "express": "^4.0.0",
+    "googleapis": "^0.7.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^0.4.0",
+    "mongodb": "^1.4.5",
+    "socket.io": "^0.9.17"
+  },
+  "dependencies": {
+    "express": "^4.0.0",
+    "socket.io": "^0.9.16"
+  }
+}

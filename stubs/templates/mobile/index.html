@@ -1,0 +1,26 @@
+<html>
+	
+	<body>
+			<script type="text/javascript" src="/components/socket.io-client/dist/socket.io.js"></script>
+			<script type="text/javascript">
+				
+				var URL = "192.168.1.4:5000/mobile"
+				// var URL = "koush.clockworkmod.com:8080/chat"
+				// var URL = "remoter.herokuapp.com/control/stop_video"	
+				URL = "http://"+ URL;
+				var socket = io.connect(URL);
+
+				socket.on("connect", function(data) {
+					console.log("stuff");
+					console.log(data);
+				});
+
+				function stop_video() {
+					socket.emit("interaction","stop_button");
+				}
+
+			</script>
+			<button onclick="stop_video()">STOP VIDEO</button>
+	</body>
+</html> 
+
